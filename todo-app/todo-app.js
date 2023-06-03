@@ -21,20 +21,29 @@ const todos = [
   },
 ];
 
+const filters = {
+  searchTodo: '',
+};
+
+const renderTodos = function (todos, filters) {
+  const filteredTodos = todos.filter(function (todo) {
+    return todo.text.toLowerCase().includes(filters.searchTodo.toLowerCase());
+  });
+
+  document.querySelector('#todos').innerHTML = '';
+
+  filteredTodos.forEach(function (todo) {
+    const p = document.createElement('p');
+    p.textContent = todo.text;
+    document.querySelector('#todos').appendChild(p);
+  });
+};
+
+renderTodos(todos, filters);
+
 const incompleteTodos = todos.filter(function (todo) {
   return !todo.completed;
 });
-
-const summary = document.createElement('h2');
-summary.textContent = `You have ${incompleteTodos.length} todos left`;
-document.querySelector('body').appendChild(summary);
-
-todos.forEach(function (todo) {
-  const p = document.createElement('p');
-  p.textContent = todo.text;
-  document.querySelector('body').appendChild(p);
-});
-
 
 //Listen for new todo creation
 
@@ -43,6 +52,14 @@ document.querySelector('#add-todo').addEventListener('click', function (e) {
 });
 
 //listen for todo input
-document.querySelector('#new-todo').addEventListener('input', function (e) {
-  console.log(e.target.value);
+document
+  .querySelector('#new-todo-text')
+  .addEventListener('input', function (e) {
+    console.log(e.target.value);
+  });
+
+//listen for todo input
+document.querySelector('#search-text').addEventListener('input', function (e) {
+  filters.searchTodo = e.target.value;
+  renderTodos(todos, filters);
 });

@@ -45,21 +45,19 @@ const incompleteTodos = todos.filter(function (todo) {
   return !todo.completed;
 });
 
-//Listen for new todo creation
-
-document.querySelector('#add-todo').addEventListener('click', function (e) {
-  console.log('Add a new todo');
-});
-
-//listen for todo input
-document
-  .querySelector('#new-todo-text')
-  .addEventListener('input', function (e) {
-    console.log(e.target.value);
-  });
 
 //listen for todo input
 document.querySelector('#search-text').addEventListener('input', function (e) {
   filters.searchTodo = e.target.value;
   renderTodos(todos, filters);
+});
+
+document.querySelector('#new-todo').addEventListener('submit', function (e) {
+  e.preventDefault();
+  todos.push({
+    text: e.target.elements.text.value,
+    complited: false,
+  });
+  renderTodos(todos, filters);
+  e.target.elements.text.value = '';
 });

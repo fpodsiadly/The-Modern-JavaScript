@@ -42,6 +42,7 @@ document.querySelector('#add-todo').addEventListener('click', function (e) {
   console.log('Add a new todo');
 });
 
-
-// You have 2 todos left (p element)
-// Add a p for each todo above (use text value)
+//listen for todo input
+document.querySelector('#new-todo').addEventListener('input', function (e) {
+  console.log(e.target.value);
+});

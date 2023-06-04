@@ -81,4 +81,3 @@ document
     filters.hideCompleted = e.target.checked;
     renderTodos(todos, filters);
   });
-  

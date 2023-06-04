@@ -45,3 +45,7 @@ document.querySelector('#search-text').addEventListener('input', function (e) {
 document.querySelector('#check').addEventListener('change', function (e) {
   console.log(e.target.checked);
 });
+
+document.querySelector('#filter-by').addEventListener('change', function (e) {
+  console.log(e.target.value);
+});

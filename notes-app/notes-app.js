@@ -1,4 +1,4 @@
-let notes = getSavedNotes();
+const notes = getSavedNotes();
 
 const filters = {
   searchText: '',

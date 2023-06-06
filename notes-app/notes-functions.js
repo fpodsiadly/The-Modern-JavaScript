@@ -14,15 +14,24 @@ const saveNotes = function (notes) {
   localStorage.setItem('notes', JSON.stringify(notes));
 };
 
-//generate the DOM structure for a note
-const generateNoteDOM = function () {
-  const noteEl = document.createElement('p');
+// Generate the DOM structure for a note
+const generateNoteDOM = function (note) {
+  const noteEl = document.createElement('div');
+  const textEl = document.createElement('span');
+  const button = document.createElement('button');
 
+  // Setup the remove note button
+  button.textContent = 'x';
+  noteEl.appendChild(button);
+
+  // Setup the note title text
   if (note.title.length > 0) {
-    noteEl.textContent = note.title;
+    textEl.textContent = note.title;
   } else {
-    noteEl.textContent = 'Unnamed note';
+    textEl.textContent = 'Unnamed note';
   }
+  noteEl.appendChild(textEl);
+
   return noteEl;
 };
 
@@ -35,7 +44,7 @@ const renderNotes = function (notes, filters) {
   document.querySelector('#notes').innerHTML = '';
 
   filteredNotes.forEach(function (note) {
-    const noteEl = generateNote(note);
+    const noteEl = generateNoteDOM(note);
     document.querySelector('#notes').appendChild(noteEl);
   });
 };

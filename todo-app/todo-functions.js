@@ -15,7 +15,6 @@ const saveTodos = function () {
 };
 
 // Remove a todo from the list of
-
 const removeTodo = function (id) {
   const todoIndex = todos.findIndex(function (todo) {
     return todo.id === id;
@@ -23,6 +22,17 @@ const removeTodo = function (id) {
 
   if (todoIndex > -1){
     todos.splice(todoIndex, 1);
+  }
+}
+
+// Update a todo list
+const toggleTodo = function (id){
+  const todo = todos.find(function (todo) {
+    return todo.id === id;
+  })
+
+  if (todo !== undefined){
+    todo.completed = !todo.completed;
   }
 }
 
@@ -61,7 +71,13 @@ const generateTodoDOM = function (todo) {
 
   //Setup todo checkbox
   checkbox.setAttribute('type', 'checkbox');
+  checkbox.checked = todo.completed;
   todoEl.appendChild(checkbox);
+  checkbox.addEventListener('change',function(){
+    toggleTodo(todo.id)
+    saveTodos(todos)
+    renderTodos(todos,filters)
+  })
 
   // Setup the todo text
   todoText.textContent = todo.text;

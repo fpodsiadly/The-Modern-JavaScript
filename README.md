@@ -1,1 +1,1 @@
-# The-Modern-JavaScript
+# The Modern JavaScript Bootcamp

@@ -5,7 +5,7 @@ const game1 = new Hangman("Car Parts", 2)
 puzzleEl.textContent = game1.puzzle
 guessesEl.textContent = game1.statusMessage
 
-window.addEventListener("keypress", function (e) {
+window.addEventListener("keypress", (e) => {
   const guess = String.fromCharCode(e.charCode)
   game1.makeGuess(guess)
   puzzleEl.textContent = game1.puzzle
@@ -18,8 +18,10 @@ request.addEventListener("readystatechange", (e) => {
   if (request.readyState === 4 && request.status === 200) {
     const data = JSON.parse(request.responseText)
     console.log(data)
+  } else if (request.readyState === 4 && request.status !== 200) {
+    console.log("Error: " + request.status)
   }
 })
 
-request.open("GET", "https://puzzle.mead.io/puzzle")
+request.open("GET", "https://puzzle.mead.io/puzzle?wordCount=3")
 request.send()

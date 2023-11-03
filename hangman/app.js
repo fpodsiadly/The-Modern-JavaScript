@@ -20,6 +20,7 @@ getPuzzle((error, puzzle) => {
   }
 })
 
+
 // const countryCode = "PL"
 // const countryRequest = new XMLHttpRequest()
 

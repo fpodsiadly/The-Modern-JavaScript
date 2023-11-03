@@ -12,7 +12,7 @@ window.addEventListener("keypress", (e) => {
   guessesEl.textContent = game1.statusMessage
 })
 
-getPuzzle((error, puzzle) => {
+getPuzzle("3", (error, puzzle) => {
   if (error) {
     console.log(`Error: ${error}`)
   } else {
@@ -20,17 +20,10 @@ getPuzzle((error, puzzle) => {
   }
 })
 
-
-// const countryCode = "PL"
-// const countryRequest = new XMLHttpRequest()
-
-// countryRequest.addEventListener("readystatechange", (e) => {
-//   if (countryRequest.readyState === 4 && countryRequest.status === 200) {
-//     const data = JSON.parse(countryRequest.responseText)
-//     const country = data.find((country) => country.cca2 === countryCode)
-//     console.log(country.name.common)
-//   }
-// })
-
-// countryRequest.open("GET", `https://restcountries.com/v3.1/all`)
-// countryRequest.send()
+getCountry("PL", (error, country) => {
+  if (error) {
+    console.log(`Error: ${error}`)
+  } else {
+    console.log(country.name.common)
+  }
+})

@@ -27,33 +27,3 @@ getCountry("PL")
   .catch((err) => {
     console.log(`Error: ${err}`)
   })
-
-// fetch("http://puzzle.mead.io/puzzle", {})
-//   .then((response) => {
-//     if (response.status === 200) {
-//       return response.json()
-//     } else {
-//       throw new Error(`Error: ${response.status}`)
-//     }
-//   })
-//   .then((data) => {
-//     console.log(data.puzzle)
-//   })
-//   .catch((error) => {
-//     console.log(error)
-//   })
-
-// fetch("https://restcountries.com/v3.1/alpha/PL", {})
-//   .then((response) => {
-//     if (response.status === 200) {
-//       return response.json()
-//     } else {
-//       throw new Error(`Error: ${response.status}`)
-//     }
-//   })
-//   .then((country) => {
-//     console.log(country.name.common)
-//   })
-//   .catch((error) => {
-//     console.log(error)
-//   })

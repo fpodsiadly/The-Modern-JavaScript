@@ -20,14 +20,6 @@ getPuzzle("2")
     console.log(`Error: ${err}`)
   })
 
-getCountry("PL")
-  .then((country) => {
-    console.log(country)
-  })
-  .catch((err) => {
-    console.log(`Error: ${err}`)
-  })
-
   getLocation()
     .then((location) => {
       return getCountry(location.country)

@@ -27,3 +27,15 @@ getCountry("PL")
   .catch((err) => {
     console.log(`Error: ${err}`)
   })
+
+  getLocation()
+    .then((location) => {
+      return getCountry(location.country)
+      //console.log(location)
+    })
+    .then((country) => {
+      console.log(country)
+    })
+    .catch((err) => {
+      console.log(`Error: ${err}`)
+    })

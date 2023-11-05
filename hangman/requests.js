@@ -26,3 +26,15 @@ const getCountry = (countryCode) => {
       return country.name.common
     })
 }
+
+const getLocation = () => {
+  return fetch(`https://ipinfo.io/json?token=7ae661c31c092d`, {}).then(
+    (response) => {
+      if (response.status === 200) {
+        return response.json()
+      } else {
+        throw new Error(`Error: ${response.status}`)
+      }
+    }
+  )
+}

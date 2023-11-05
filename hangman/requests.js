@@ -10,43 +10,30 @@ const getPuzzle = async (wordCount) => {
   }
 }
 
-const getPuzzleOld = (wordCount) => {
-  return fetch(`https://puzzle.mead.io/puzzle?wordCount=${wordCount}`)
-    .then((response) => {
-      if (response.status === 200) {
-        return response.json()
-      } else {
-        throw new Error(`Error: ${response.status}`)
-      }
-    })
-    .then((data) => {
-      return data.puzzle
-    })
+const getCurrentCountry = async () => {
+  const location = await getLocation()
+  const country = await getCountry(location.country)
+  return country
 }
 
-const getCountry = (countryCode) => {
-  return fetch(`https://restcountries.com/v3.1/alpha/${countryCode}`, {})
-    .then((response) => {
-      if (response.status === 200) {
-        return response.json()
-      } else {
-        throw new Error(`Error: ${response.status}`)
-      }
-    })
-    .then((data) => {
-      const country = data.find((country) => country.cca2 === countryCode)
-      return country.name.common
-    })
-}
-
-const getLocation = () => {
-  return fetch(`https://ipinfo.io/json?token=7ae661c31c092d`, {}).then(
-    (response) => {
-      if (response.status === 200) {
-        return response.json()
-      } else {
-        throw new Error(`Error: ${response.status}`)
-      }
-    }
+const getCountry = async (countryCode) => {
+  const response = await fetch(
+    `https://restcountries.com/v3.1/alpha/${countryCode}`
   )
+  if (response.status === 200) {
+    const data = await response.json()
+    const country = data.find((country) => country.cca2 === countryCode)
+    return country.name.common
+  } else {
+    throw new Error(`Error: ${response.status}`)
+  }
+}
+
+const getLocation = async () => {
+  const response = await fetch(`https://ipinfo.io/json?token=7ae661c31c092d`)
+  if (response.status === 200) {
+    return await response.json()
+  } else {
+    throw new Error(`Error: ${response.status}`)
+  }
 }

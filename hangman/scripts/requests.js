@@ -1,7 +1,5 @@
 const getPuzzle = async (wordCount) => {
-  const response = await fetch(
-    `https://puzzle.mead.io/puzzle?wordCount=${wordCount}`
-  )
+  const response = await fetch(`//puzzle.mead.io/puzzle?wordCount=${wordCount}`)
   if (response.status === 200) {
     const data = await response.json()
     return data.puzzle
@@ -17,9 +15,7 @@ const getCurrentCountry = async () => {
 }
 
 const getCountry = async (countryCode) => {
-  const response = await fetch(
-    `https://restcountries.com/v3.1/alpha/${countryCode}`
-  )
+  const response = await fetch(`//restcountries.com/v3.1/alpha/${countryCode}`)
   if (response.status === 200) {
     const data = await response.json()
     const country = data.find((country) => country.cca2 === countryCode)
@@ -30,7 +26,7 @@ const getCountry = async (countryCode) => {
 }
 
 const getLocation = async () => {
-  const response = await fetch(`https://ipinfo.io/json?token=7ae661c31c092d`)
+  const response = await fetch(`//ipinfo.io/json?token=7ae661c31c092d`)
   if (response.status === 200) {
     return await response.json()
   } else {

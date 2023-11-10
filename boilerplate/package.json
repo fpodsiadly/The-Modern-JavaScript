@@ -4,7 +4,6 @@
   "description": "",
   "main": "input.js",
   "scripts": {
-    "start": "webpack --watch",
     "dev-server": "webpack serve --open  --mode=development",
     "build": "webpack --mode=production"
   },

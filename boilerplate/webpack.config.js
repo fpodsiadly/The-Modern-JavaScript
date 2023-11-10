@@ -1,6 +1,7 @@
 const path = require("path")
 
 module.exports = {
+  mode: "development",
   entry: "./src/index.js",
   output: {
     path: path.resolve(__dirname, "public/scripts"),
@@ -19,5 +20,13 @@ module.exports = {
         },
       },
     ],
+  },
+  devServer: {
+    static: {
+      directory: path.join(__dirname, "public"),
+    },
+    devMiddleware: {
+      publicPath: "/scripts/",
+    },
   },
 }

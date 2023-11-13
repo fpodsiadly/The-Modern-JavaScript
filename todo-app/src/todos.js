@@ -1,5 +1,8 @@
+import { v4 as uuidv4 } from 'uuid'
+
 let todos = []
 
+// Fetch existing todos from localStorage
 const loadTodos = () => {
   const todosJSON = localStorage.getItem('todos')
 
@@ -10,13 +13,14 @@ const loadTodos = () => {
   }
 }
 
+// Save todos to localStorage
 const saveTodos = () => {
   localStorage.setItem('todos', JSON.stringify(todos))
 }
 
 const getTodos = () => todos
 
-const createTodos = (text) => {
+const createTodo = (text) => {
   todos.push({
     id: uuidv4(),
     text,
@@ -34,6 +38,7 @@ const removeTodo = (id) => {
   }
 }
 
+// Toggle the completed value for a given todo
 const toggleTodo = (id) => {
   const todo = todos.find((todo) => todo.id === id)
 
@@ -43,5 +48,6 @@ const toggleTodo = (id) => {
   }
 }
 
-todos = loadTodos()
-export { saveTodos, getTodos, createTodos, removeTodo, toggleTodo, loadTodos }
+loadTodos()
+
+export { loadTodos, getTodos, createTodo, removeTodo, toggleTodo }

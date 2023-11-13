@@ -1,6 +1,7 @@
-import { getFilters } from './filters'
 import { getTodos, toggleTodo, removeTodo } from './todos'
+import { getFilters } from './filters'
 
+// Render application todos based on filters
 const renderTodos = () => {
   const todoEl = document.querySelector('#todos')
   const filters = getFilters()
@@ -29,6 +30,7 @@ const renderTodos = () => {
   }
 }
 
+// Get the DOM elements for an individual note
 const generateTodoDOM = (todo) => {
   const todoEl = document.createElement('label')
   const containerEl = document.createElement('div')
@@ -66,6 +68,7 @@ const generateTodoDOM = (todo) => {
   return todoEl
 }
 
+// Get the DOM elements for list summary
 const generateSummaryDOM = (incompleteTodos) => {
   const summary = document.createElement('h2')
   const plural = incompleteTodos.length === 1 ? '' : 's'
@@ -74,4 +77,4 @@ const generateSummaryDOM = (incompleteTodos) => {
   return summary
 }
 
-export { renderTodos, generateTodoDOM, generateSummaryDOM }
+export { generateTodoDOM, renderTodos, generateSummaryDOM }

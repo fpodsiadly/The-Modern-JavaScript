@@ -1,11 +1,13 @@
 import { renderTodos } from './views'
 import { setFilters } from './filters'
-import { createTodos, loadTodos } from './todos'
+import { createTodo, loadTodos } from './todos'
 
 renderTodos()
 
 document.querySelector('#search-text').addEventListener('input', (e) => {
-  setFilters({ searchText: e.target.value })
+  setFilters({
+    searchText: e.target.value,
+  })
   renderTodos()
 })
 
@@ -14,14 +16,16 @@ document.querySelector('#new-todo').addEventListener('submit', (e) => {
   e.preventDefault()
 
   if (text.length > 0) {
-    createTodos(text)
+    createTodo(text)
     renderTodos()
     e.target.elements.text.value = ''
   }
 })
 
 document.querySelector('#hide-completed').addEventListener('change', (e) => {
-  setFilters({ hideCompleted: e.target.checked })
+  setFilters({
+    hideCompleted: e.target.checked,
+  })
   renderTodos()
 })
 

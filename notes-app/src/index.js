@@ -1,12 +1,26 @@
-import { getNotes, createNotes, removeNote, updateNote } from "./notes"
-import { getFilters, setFilters } from "./filters"
+import { createNotes } from "./notes"
+import { setFilters } from "./filters"
+import { renderNotes } from "./views"
 
-// console.log(getNotes())
-//createNotes()
-//removeNote("82f1c30c-2b22-4543-a8ef-f0ada12c782e")
-// updateNote("12a562dc-29fe-4d71-be87-63d2c8674ffb", { title: "My new title" })
-// console.log(getNotes())
+renderNotes()
 
-console.log(getFilters())
-setFilters({ searchText: "Office", sortBy: "byCreated" })
-console.log(getFilters())
+document.querySelector("#create-note").addEventListener("click", (e) => {
+  const id = createNotes()
+  location.assign(`edit.html#${id}`)
+})
+
+document.querySelector("#search-text").addEventListener("input", (e) => {
+  setFilters({ searchText: e.target.value })
+  renderNotes()
+})
+
+document.querySelector("#filter-by").addEventListener("change", (e) => {
+  setFilters({ sortBy: e.target.value })
+  renderNotes()
+})
+
+window.addEventListener("storage", (e) => {
+  if (e.key === "notes") {
+    renderNotes()
+  }
+})

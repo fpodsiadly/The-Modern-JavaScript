@@ -33,6 +33,7 @@ const createNotes = () => {
     updatedAt: timestamp,
   })
   saveNotes()
+  return id
 }
 
 // Remove a note from the list
@@ -93,11 +94,12 @@ const updateNote = (id, updates) => {
     note.updatedAt = moment().valueOf()
   }
 
-  if ( typeof updates.body === "string" ) {
+  if (typeof updates.body === "string") {
     note.body = updates.body
     note.updatedAt = moment().valueOf()
   }
   saveNotes()
+  return note
 }
 notes = loadNotes()
 

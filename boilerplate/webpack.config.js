@@ -1,10 +1,11 @@
 const path = require("path")
 
 module.exports = {
-  entry: ["core-js/stable", "regenerator-runtime/runtime", "./src/index.js"],
+  mode: 'development',
+  entry: ['core-js/stable', 'regenerator-runtime/runtime', './src/index.js'],
   output: {
-    path: path.resolve(__dirname, "public/scripts"),
-    filename: "bundle.js",
+    path: path.resolve(__dirname, 'public/scripts'),
+    filename: 'bundle.js',
   },
   module: {
     rules: [
@@ -12,9 +13,9 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
           options: {
-            presets: ["@babel/preset-env"],
+            presets: ['@babel/preset-env'],
           },
         },
       },
@@ -22,11 +23,11 @@ module.exports = {
   },
   devServer: {
     static: {
-      directory: path.join(__dirname, "public"),
+      directory: path.join(__dirname, 'public'),
     },
     devMiddleware: {
-      publicPath: "/scripts/",
+      publicPath: '/scripts/',
     },
   },
-  devtool: "source-map",
+  devtool: 'source-map',
 }
